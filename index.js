@@ -2,6 +2,9 @@ const API_KEY = "YOUR API KEY"
 
 function handleFormSubmit(event) {
   //handle submit event
+  fetch('https://api.openweathermap.org/data/2.5/weather?')
+  .then(resp => resp.json())
+  .then(json => console.log(json));
 }
 
 function fetchCurrentWeather(city) {
@@ -26,5 +29,6 @@ function createChart(json) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  handleFormSubmit()
   //add event listener here for form submission
 })
