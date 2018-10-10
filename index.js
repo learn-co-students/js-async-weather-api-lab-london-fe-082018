@@ -2,10 +2,12 @@ const API_KEY = "YOUR API KEY"
 
 function handleFormSubmit(event) {
   //handle submit event
+  
 }
 
 function fetchCurrentWeather(city) {
   //fetch current weather based on city
+  fetch("https://api.openweathermap.org/data/2.5/weather?").then(response => response.json()).then(json=>displayCurrentWeather(json))
 }
 
 function displayCurrentWeather(json) {
