@@ -1,18 +1,26 @@
-const API_KEY = "YOUR API KEY"
+const API_KEY = "a1cbc4b45d6e7126f02f6ae69308ceed"
+const main = document.getElementById("cityForm")
+cityForm.addEventListener('submit', fetchCurrentWeather())
 
 function handleFormSubmit(event) {
   //handle submit event
-  fetch('https://api.openweathermap.org/data/2.5/weather?')
+    event.preventDefault();
+    console.log("handleFormSubmit function")
+}
+
+
+function fetchCurrentWeather(city) {
+  //fetch current weather based on city
+  fetch('api.openweathermap.org/data/2.5/weather?q={city}')
   .then(resp => resp.json())
   .then(json => console.log(json));
 }
 
-function fetchCurrentWeather(city) {
-  //fetch current weather based on city
-}
-
 function displayCurrentWeather(json) {
   //render current weather data to the DOM using provided IDs and json from API
+  fetch('https://api.openweathermap.org/data/2.5/weather?') + API_KEY
+  .then(resp => resp.json())
+  .then(json => console.log(json));
 }
 
 
@@ -29,6 +37,8 @@ function createChart(json) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  handleFormSubmit()
+  const submit = document.getElementById('cityForm')
+  submit.addEventListener('submit', (e) => handleFormSubmit)
   //add event listener here for form submission
 })
+
