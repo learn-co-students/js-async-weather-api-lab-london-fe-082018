@@ -1,18 +1,21 @@
 const API_KEY = "a1cbc4b45d6e7126f02f6ae69308ceed"
 const main = document.getElementById("cityForm")
-cityForm.addEventListener('submit', fetchCurrentWeather())
+cityForm.addEventListener('submit', handleFormSubmit())
 
 function handleFormSubmit(event) {
   //handle submit event
     event.preventDefault();
-    console.log("handleFormSubmit function")
+    let city = (event['target'][0]['value'])
+    console.log(city)
+    fetchCurrentWeather(city)
 }
-
 
 function fetchCurrentWeather(city) {
   //fetch current weather based on city
-  fetch('api.openweathermap.org/data/2.5/weather?q={city}')
-  .then(resp => resp.json())
+  console.log("Im in fetchCurrentWeather")
+  let url ='https://api.openweathermap.org/data/2.5/weather?APPID=' + API_KEY + '&q' + city
+  console.log (url)
+  fetch(url).then((response) => {console.log(response)})
   .then(json => console.log(json));
 }
 
@@ -38,7 +41,7 @@ function createChart(json) {
 
 document.addEventListener('DOMContentLoaded', function() {
   const submit = document.getElementById('cityForm')
-  submit.addEventListener('submit', (e) => handleFormSubmit)
+  submit.addEventListener('submit', (e) => handleFormSubmit(e))
   //add event listener here for form submission
 })
 
