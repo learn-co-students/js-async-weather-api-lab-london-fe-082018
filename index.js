@@ -1,13 +1,16 @@
 const API_KEY = "a1cbc4b45d6e7126f02f6ae69308ceed"
 const main = document.getElementById("cityForm")
 
+
 function handleFormSubmit(event) {
   //handle submit event
     event.preventDefault();
     let city = (event['target'][0]['value'])
     console.log(city)
     fetchCurrentWeather(city)
+    console.log("handleFormSubmit function")
 }
+
 
 function fetchCurrentWeather(city) {
   //fetch current weather based on city
@@ -15,6 +18,9 @@ function fetchCurrentWeather(city) {
   let url ='https://api.openweathermap.org/data/2.5/weather?APPID=' + API_KEY + '&q=' + city
   console.log(url)
   fetch(url).then(response => response.json()).then(json => displayCurrentWeather(json));
+  fetch('api.openweathermap.org/data/2.5/weather?q={city}')
+  .then(resp => resp.json())
+  .then(json => console.log(json));
 }
 
 function displayCurrentWeather(json) {
@@ -27,6 +33,9 @@ function displayCurrentWeather(json) {
  console.log(json['main']['temp_max'])
  console.log(json['main']['humidity'])
  console.log(json['clouds']['all'])
+  fetch('https://api.openweathermap.org/data/2.5/weather?') + API_KEY
+  .then(resp => resp.json())
+  .then(json => console.log(json));
 }
 
 
