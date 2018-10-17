@@ -2,12 +2,9 @@ const API_KEY = "a1cbc4b45d6e7126f02f6ae69308ceed"
 const main = document.getElementById("cityForm")
 
 function handleFormSubmit(event) {
-  //handle submit event
     event.preventDefault();
     let city = (event['target'][0]['value'])
-    console.log(city)
     fetchCurrentWeather(city)
-    console.log("handleFormSubmit function")
     fetchFiveDayForecast(city)
 }
 
@@ -48,7 +45,6 @@ function fetchFiveDayForecast(city) {
 function displayFiveDayForecast(json) {
   //render five day forecast data to the DOM using provided IDs and json from API
   console.log(json)
-  console.log(json['list'][7]['dt_txt'])
   console.log(json['list'][7]['main']['temp'])
   console.log(json['list'][7]['main']['humidity'])
   
