@@ -8,6 +8,7 @@ function handleFormSubmit(event) {
     console.log(city)
     fetchCurrentWeather(city)
     console.log("handleFormSubmit function")
+    fetchFiveDayForecast(city)
 }
 
 
@@ -40,11 +41,29 @@ document.getElementById("cloudCover").innerHTML = (json['clouds']['all'])
 function fetchFiveDayForecast(city) {
   //fetch five day forecast data based on city
   console.log('Im in the fetchFiveDayForecast')
-  fetch(url).then(response => response.json()).then(json => displayFiveDayForecast(json));
+  let url1 ='https://api.openweathermap.org/data/2.5/forecast?APPID=' + API_KEY + '&q=' + city
+  fetch(url1).then(response => response.json()).then(json => displayFiveDayForecast(json));
 }
 
 function displayFiveDayForecast(json) {
   //render five day forecast data to the DOM using provided IDs and json from API
+  console.log(json)
+  console.log(json['list'][7]['dt_txt'])
+  console.log(json['list'][7]['main']['temp'])
+  console.log(json['list'][7]['main']['humidity'])
+  
+  let aside = document.querySelector('aside')
+  let div = document.createElement('div');
+  
+  div.innerHTML = (json['list'][7]['dt_txt']) + " Temperature: " + (json['list'][7]['main']['temp']) + " Humidity: " + (json['list'][7]['main']['humidity'])
+
+  for (let index=0; index<=39; index++){
+	let div = document.createElement('div');
+	div.innerHTML = (json['list'][index]['dt_txt']) + " Temperature: " + (json['list'][index]['main']['temp']) + " Humidity: " + (json['list'][index]['main']['humidity']) 
+	aside.appendChild(div);
+}
+
+  
 }
 
 function createChart(json) {
